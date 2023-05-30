@@ -67,7 +67,7 @@ func (api *API) createUser() {
 		Surname:  nameGenerator.Generate(),
 		Username: nameGenerator.Generate(),
 		Password: "test",
-		Email:    nameGenerator.Generate(),
+		Email:    nameGenerator.Generate() + "@test.com",
 	}
 }
 
