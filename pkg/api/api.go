@@ -98,9 +98,5 @@ func (api *API) postData() error {
 		return err
 	}
 
-	if err := api.postExercises(); err != nil {
-		return err
-	}
-
-	return nil
+	return api.postExercises()
 }
