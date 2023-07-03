@@ -1,24 +1,22 @@
 package api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"net/url"
 	"time"
 
 	"github.com/goombaio/namegenerator"
-	"github.com/schollz/progressbar/v3"
+	csvReader "github.com/kilianp07/MuscleAppSeeder/pkg/csv"
 )
 
 type API struct {
 	apiUrl string
 	user   User
 	token  Token
-	data   []float64
+	data   *csvReader.Data
 }
 
 type Token struct {
@@ -33,7 +31,7 @@ type User struct {
 	Email    string `json:"email"`
 }
 
-func StartApi(data []float64) error {
+func StartApi(data *csvReader.Data) error {
 	api := API{
 		apiUrl: "http://localhost:8080",
 		data:   data,
@@ -71,24 +69,6 @@ func (api *API) createUser() {
 	}
 }
 
-func (api *API) postUser() error {
-	var posturl = api.apiUrl + "/user"
-
-	jsonUser, err := json.Marshal(api.user)
-	if err != nil {
-		return err
-	}
-
-	// Post request to create user using api.user
-	r, err := http.Post(posturl, "application/json", bytes.NewBuffer(jsonUser))
-	if err != nil {
-		return err
-	}
-	defer r.Body.Close()
-
-	return nil
-}
-
 func (api *API) Login() error {
 	var posturl = api.apiUrl + "/auth/login"
 
@@ -114,37 +94,9 @@ func (api *API) Login() error {
 }
 
 func (api *API) postData() error {
-	var posturl = api.apiUrl + "/weight"
-
-	startDate := time.Now().Add(-24 * time.Hour * (time.Duration(len(api.data) / 2)))
-
-	fmt.Println("Posting weight data to API")
-	bar := progressbar.Default(int64(len(api.data)))
-
-	for _, data := range api.data {
-		startDate = startDate.Add(24 * time.Hour)
-		jsonData, err := json.Marshal(map[string]interface{}{
-			"value": data,
-			"date":  startDate.Unix(),
-		})
-		if err != nil {
-			return err
-		}
-
-		req, err := http.NewRequest("POST", posturl, bytes.NewBuffer(jsonData))
-		if err != nil {
-			return err
-		}
-		req.Header.Add("Authorization", "Bearer "+api.token.Token)
-
-		// Send req using http Client
-		client := &http.Client{}
-		resp, err := client.Do(req)
-		if err != nil {
-			log.Println("Error on response.\n[ERROR] -", err)
-		}
-		defer resp.Body.Close()
-		bar.Add(1)
+	if err := api.postWeights(); err != nil {
+		return err
 	}
-	return nil
+
+	return api.postExercises()
 }
