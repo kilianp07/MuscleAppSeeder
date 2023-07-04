@@ -75,6 +75,8 @@ github.com/joho/godotenv v1.5.1/go.mod h1:f4LDr5Voq0i2e/R5DDNOoa2zzDfwtkZa6DnEwA
 github.com/k0kubun/go-ansi v0.0.0-20180517002512-3bf9e2903213/go.mod h1:vNUNkEQ1e29fT/6vq2aBdFsgNPmy8qMdSay1npru+Sw=
 github.com/kilianp07/MuscleApp v0.0.0-20230629115504-385ce65dee17 h1:t8yToZxqS9E18xaqbbNP39poq5dqdzVzvbU2JqcOOAA=
 github.com/kilianp07/MuscleApp v0.0.0-20230629115504-385ce65dee17/go.mod h1:3w8Yg4+VTKf65O0yZMjAwNFRAIFt5owsOMMULLa2M8U=
+github.com/kilianp07/MuscleApp v0.0.0-20230703102045-549259e1ea6a h1:wpN2uua7GQtQfOsl74y2C+OXV680vGupzBSxWtJtXps=
+github.com/kilianp07/MuscleApp v0.0.0-20230703102045-549259e1ea6a/go.mod h1:qrZI3ytZHufyZ2wXlik/vGVS3cin7CzpSNfwfuPQRVw=
 github.com/mattn/go-isatty v0.0.17/go.mod h1:kYGgaQfpe5nmfYZH+SKPsOc2e4SrIfOl2e/yFXSvRLM=
 github.com/mattn/go-runewidth v0.0.14 h1:+xnbZSEeDbOIg5/mE6JF0w6n9duR1l3/WmbinWVwUuU=
 github.com/mattn/go-runewidth v0.0.14/go.mod h1:Jdepj2loyihRzMpdS35Xk/zdY8IAYHsh153qUoGf23w=
