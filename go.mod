@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/goombaio/namegenerator v0.0.0-20181006234301-989e774b106e
 	github.com/joho/godotenv v1.5.1
-	github.com/kilianp07/MuscleApp v0.0.0-20230629115504-385ce65dee17
+	github.com/kilianp07/MuscleApp v0.0.0-20230703102045-549259e1ea6a
 	github.com/schollz/progressbar/v3 v3.13.1
 	google.golang.org/api v0.129.0
 )
